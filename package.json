@@ -24,6 +24,9 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "js-yaml": "^3.13.1",
+    "mem": "^4.0.0",
+    "minimist": "^0.2.1",
     "mpvue": "^2.0.0",
     "mpvue-picker": "^2.1.6",
     "vue-waterfall2": "^1.9.6",
@@ -80,7 +83,7 @@
     "url-loader": "^1.0.1",
     "vue-style-loader": "^4.1.0",
     "webpack": "^3.11.0",
-    "webpack-bundle-analyzer": "^2.2.1",
+    "webpack-bundle-analyzer": "^3.3.2",
     "webpack-dev-middleware-hard-disk": "^1.12.0",
     "webpack-merge": "^4.1.0",
     "webpack-mpvue-asset-plugin": "^2.0.0",
