@@ -1,0 +1,66 @@
+{
+  "pages": [
+    "pages/index/main",
+    "pages/chatList/main",
+    "pages/user/main",
+    "pages/goods/main",
+    "pages/login/main",
+    "pages/chat/main",
+    "pages/collection/main",
+    "pages/myRelease/main",
+    "pages/createGoods/main",
+    "pages/order/main",
+    "pages/address/main"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#85A5CC",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#618ABD",
+    "backgroundColor": "#85A5CC",
+    "selectedColor": "#FFFFF0",
+    "borderStyle": "white",
+
+    "list": [{
+      "text": "首页",
+      "pagePath": "pages/index/main",
+      "iconPath": "static/tabs/home.png",
+      "selectedIconPath": "static/tabs/home-active.png"
+    },
+    {
+      "text": "消息",
+      "pagePath": "pages/chatList/main",
+      "iconPath": "static/tabs/chat.png",
+      "selectedIconPath": "static/tabs/chat-active.png"
+    },
+    {
+      "text": "个人中心",
+      "pagePath": "pages/user/main",
+      "iconPath": "static/tabs/user.png",
+      "selectedIconPath": "static/tabs/user-active.png"
+    }],
+
+    "items": [{
+      "name": "首页",
+      "pagePath": "pages/index/main",
+      "icon": "static/tabs/home.png",
+      "activeIcon": "static/tabs/home-active.png"
+    }, 
+    {
+      "name": "消息",
+      "pagePath": "pages/chatList/main",
+      "icon": "static/tabs/chat.png",
+      "activeIcon": "static/tabs/chat-active.png"
+    },
+    {
+      "name": "个人中心",
+      "pagePath": "pages/user/main",
+      "icon": "static/tabs/user.png",
+      "activeIcon": "static/tabs/user-active.png"
+    }],
+    "position": "bottom"
+  }
+}

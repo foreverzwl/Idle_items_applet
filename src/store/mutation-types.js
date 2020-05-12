@@ -1,0 +1,4 @@
+export const SET_TOKEN = 'SET_TOKEN'
+export const UPDATE_TOKEN = 'UPDATE_TOKEN'
+export const SET_USERINFO = 'SET_USERINFO'
+export const SET_WINDOWATTRI = 'SET_WINDOWATTRI'
