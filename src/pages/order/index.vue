@@ -7,7 +7,6 @@
 export default {
   data () {
     return {
-      
     }
   },
   methods: {
@@ -16,7 +15,6 @@ export default {
   onUnload () {
   },
   onLoad () {
-
   }
 }
 </script>

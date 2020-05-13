@@ -10,7 +10,7 @@
       <div class="tab">
         <tabCard :tabData = 'userPageData.firTabCard'></tabCard>
         <tabCard :tabData = 'userPageData.secTabCard'></tabCard>
-        <infoCard :infoData = 'infoCard' :createSwitch='createSwitch' :editSwitch='editSwitch' ></infoCard>
+        <infoCard :infoData = 'infoCard'></infoCard>
       </div>
     </div>
     <div v-else class="outline">请先登录</div>
@@ -28,11 +28,10 @@ export default {
       windowHeight: 0,
       windowWidth: 0,
       userPageData: {},
-      createSwitch: true,
-      editSwitch: true,
       infoCard: {
         title: '个人信息',
-        urlData: []
+        listObjData: {},
+        originData: {}
       }
     }
   },
@@ -65,19 +64,22 @@ export default {
       this.$http.get({
         url: '/address'
       }).then(res => {
-        console.log('调用了获取地址接口')
-        console.log(res)
         this.$nextTick(() => {
-          this.infoCard.urlData = res.toArray()
-          this.createSwitch = false
-          this.editSwitch = true
+          let resMap = {
+            'name': {'name': '姓名', 'value': ''},
+            'mobile': {'name': '联系电话', 'value': ''},
+            'address': {'name': '现住址', 'value': ''}
+          }
+          for (let key in resMap) {
+            resMap[key].value = res[key]
+          }
+          this.$set(this.infoCard, 'listObjData', resMap)
+          this.$set(this.infoCard, 'originData', res)
         })
       }).catch((err) => {
         this.$nextTick(() => {
           if (err.statusCode === 404) {
-            this.infoCard.urlData = []
-            this.createSwitch = true
-            this.editSwitch = false
+            this.$set(this.infoCard, 'listObjData', {})
           }
         })
       })
