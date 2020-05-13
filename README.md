@@ -1,37 +1,7 @@
-# my-project
+# Idle_items_applet
 
-> A Mpvue project
+> 该项目作为个人毕业设计项目，前端采用mpvue，后端采用ThinkPHP，目前并不打算将该项目部署到线上，该项目在本地环境与真机调试下可以正常运行。该项目对应的后台代码：[Idle_items_server](https://github.com/foreverzwl/Idle_items_server.git).
 
-## Build Setup
-
-``` bash
-# 初始化项目
-vue init mpvue/mpvue-quickstart myproject
-cd myproject
-
-# 安装依赖
-yarn
-
-# 开发时构建
-npm dev
-
-# 打包构建
-npm build
-
-# 指定平台的开发时构建(微信、百度、头条、支付宝)
-npm dev:wx
-npm dev:swan
-npm dev:tt
-npm dev:my
-
-# 指定平台的打包构建
-npm build:wx
-npm build:swan
-npm build:tt
-npm build:my
-
-# 生成 bundle 分析报告
-npm run build --report
-```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 项目功能模块
+![image](https://github.com/foreverzwl/Idle_items_applet/blob/master/result/function_devide.png).
+##后续待更新
