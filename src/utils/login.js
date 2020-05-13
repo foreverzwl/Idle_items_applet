@@ -88,6 +88,8 @@ function showLoginModal () {
 }
 
 function isLogin () {
+  console.log('调用了isLogin')
+  console.log(wx.getStorageSync('token'))
   if (!wx.getStorageSync('token')) {
     showLoginModal()
     return false

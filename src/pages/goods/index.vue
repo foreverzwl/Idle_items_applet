@@ -105,8 +105,8 @@ export default {
             this.upFlag = false
             console.log('post成功')
             console.log(res)
-            wx.navigatTo({
-              url: '/pages/order/main?order=' + res.toString()
+            wx.navigateTo({
+              url: '/pages/order/main?order=' + JSON.stringify(res)
             })
           }).catch(err => {
             console.log('进入失败')
@@ -126,7 +126,12 @@ export default {
                 success (res) {
                   if (res.confirm) {
                     console.log('用户点击了确定')
-                    wx.navigateTo({url: '/pages/address/main'})
+                    let obj = {
+                      'isCreate': true,
+                      'addressData': {}
+                    }
+                    let objJson = JSON.stringify(obj)
+                    wx.navigateTo({url: '/pages/address/main?info=' + objJson})
                   }
                 }
               })

@@ -41,6 +41,7 @@ export default {
   },
   computed: {
     isLogin () {
+      console.log('计算isLogin')
       return this.$store.getters.getLoginStatus
     }
   },
@@ -48,8 +49,10 @@ export default {
     async initData () {
       //  等待登录函数调用完毕后再执行下一步
       await this.$login.isLogin()
-      this.userInfo = wx.getStorageSync('userInfo')
-      this.userPageData = sysData.userPageData
+      if (this.isLogin) {
+        this.userInfo = wx.getStorageSync('userInfo')
+        this.userPageData = sysData.userPageData
+      }
     },
     initPageStyle () {
       let that = this
@@ -61,34 +64,36 @@ export default {
       })
     },
     initAddressData () {
-      this.$http.get({
-        url: '/address'
-      }).then(res => {
-        this.$nextTick(() => {
-          let resMap = {
-            'name': {'name': '姓名', 'value': ''},
-            'mobile': {'name': '联系电话', 'value': ''},
-            'address': {'name': '现住址', 'value': ''}
-          }
-          for (let key in resMap) {
-            resMap[key].value = res[key]
-          }
-          this.$set(this.infoCard, 'listObjData', resMap)
-          this.$set(this.infoCard, 'originData', res)
+      if (this.isLogin) {
+        this.$http.get({
+          url: '/address'
+        }).then(res => {
+          this.$nextTick(() => {
+            let resMap = {
+              'name': {'name': '姓名', 'value': ''},
+              'mobile': {'name': '联系电话', 'value': ''},
+              'address': {'name': '现住址', 'value': ''}
+            }
+            for (let key in resMap) {
+              resMap[key].value = res[key]
+            }
+            this.$set(this.infoCard, 'listObjData', resMap)
+            this.$set(this.infoCard, 'originData', res)
+          })
+        }).catch((err) => {
+          this.$nextTick(() => {
+            if (err.statusCode === 404) {
+              this.$set(this.infoCard, 'listObjData', {})
+            }
+          })
         })
-      }).catch((err) => {
-        this.$nextTick(() => {
-          if (err.statusCode === 404) {
-            this.$set(this.infoCard, 'listObjData', {})
-          }
-        })
-      })
+      }
     }
   },
   //  每次进入页面都会执行
   onShow () {
-    this.initPageStyle()
     this.initData()
+    this.initPageStyle()
     this.initAddressData()
   }
 }
