@@ -261,6 +261,26 @@ export default {
       'show': false,
       'text': ''
     }
+    this.countryVerifyObj = {
+      'show': false,
+      'text': '国家不能为空'
+    }
+    this.provinceVerifyObj = {
+      'show': false,
+      'text': '省份不能为空'
+    }
+    this.cityVerifyObj = {
+      'show': false,
+      'text': '城市不能为空'
+    }
+    this.areaVerifyObj = {
+      'show': false,
+      'text': '区域不能为空'
+    }
+    this.detailVerifyObj = {
+      'show': false,
+      'text': '详细地址不能为空'
+    }
   },
   onShow () {
     this.getPageParams()

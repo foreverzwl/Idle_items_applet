@@ -11,7 +11,7 @@ const userPageData = {
         {
           'name': '等待同意',
           'src': '/static/images/apply.png',
-          'nav': '/pages/collection/main'
+          'nav': '/pages/orderList/main?type=wait'
         },
         {
           'name': '进入交易',
@@ -26,7 +26,7 @@ const userPageData = {
         {
           'name': '全部订单',
           'src': '/static/images/all_orders.png',
-          'nav': '/pages/collection/main'
+          'nav': '/pages/orderList/main?type=all'
         }
       ]
     ]

@@ -18,9 +18,9 @@
 </template>
 
 <script>
-import tabCard from '../../components/tabCard'
-import infoCard from '../../components/infoCard'
-import sysData from '../../utils/sysData'
+import tabCard from '@/components/tabCard'
+import infoCard from '@/components/infoCard'
+import sysData from '@/utils/sysData'
 export default {
   data () {
     return {
@@ -68,15 +68,15 @@ export default {
         this.$http.get({
           url: '/address'
         }).then(res => {
+          let resMap = {
+            'name': {'name': '姓名', 'value': ''},
+            'mobile': {'name': '联系电话', 'value': ''},
+            'address': {'name': '现住址', 'value': ''}
+          }
+          for (let key in resMap) {
+            resMap[key].value = res[key]
+          }
           this.$nextTick(() => {
-            let resMap = {
-              'name': {'name': '姓名', 'value': ''},
-              'mobile': {'name': '联系电话', 'value': ''},
-              'address': {'name': '现住址', 'value': ''}
-            }
-            for (let key in resMap) {
-              resMap[key].value = res[key]
-            }
             this.$set(this.infoCard, 'listObjData', resMap)
             this.$set(this.infoCard, 'originData', res)
           })

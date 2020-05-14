@@ -9,7 +9,8 @@
     "pages/collection/main",
     "pages/myRelease/main",
     "pages/createGoods/main",
-    "pages/order/main",
+    "pages/orderDetail/main",
+    "pages/orderList/main",
     "pages/address/main"
   ],
   "window": {

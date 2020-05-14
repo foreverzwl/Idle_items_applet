@@ -105,9 +105,16 @@ export default {
             this.upFlag = false
             console.log('post成功')
             console.log(res)
-            wx.navigateTo({
-              url: '/pages/order/main?order=' + JSON.stringify(res)
-            })
+            if (!res.pass) {
+              wx.showToast({
+                title: '订单创建失败，库存不足',
+                icon: 'none'
+              })
+            } else {
+              wx.navigateTo({
+                url: '/pages/orderDetail/main?order=' + JSON.stringify(res)
+              })
+            }
           }).catch(err => {
             console.log('进入失败')
             console.log(err)

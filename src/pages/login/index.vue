@@ -25,14 +25,8 @@ export default {
       return wx.canIUse('button.open-type.getUserInfo')
     },
     getUserInfo () {
-      console.log('点击了登录按钮')
       this.$login.login()
     }
-  },
-  created () {
-  },
-  onShow () {
-    console.log('调用了login')
   }
 }
 </script>
