@@ -99,7 +99,7 @@ export default {
         let arr = [{'goods_id': this.goods.goods_id, 'count': this.count}]
         if (this.upFlag) {
           this.$http.post({
-            url: '/order/create',
+            url: '/order/new_order',
             data: {'goods': arr}
           }).then(res => {
             this.upFlag = false

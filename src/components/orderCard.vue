@@ -21,12 +21,18 @@
       </div>
       <div class="order_footer">
         <p class="order_trade">交易方式：{{order.trade.name}}</p>
-        <!-- <p class="order_count">订单商品总数：{{order.total_count}}</p> -->
         <p>
           <span class="order_count">订单商品总数：{{order.total_count}}</span>
           <span>总价：{{order.order_price | toFixed(2)}}</span>
         </p>
-        <span class="operate" @click="cancelOrder(order.order_no)"  v-if="!order.status.code">取消</span>
+        <div v-if="(storeFlag && order.status.code == 0)">
+          <span class="operate" @click="agreeOrder(order.order_no)" >同意</span>
+          <span class="operate" @click="refuseOrder(order.order_no)" >拒绝</span>
+        </div>
+        <div v-else>
+          <span class="operate" @click="cancelOrder(order.order_no)"  v-if="(order.status.code == 2)">完成</span>
+          <span class="operate" @click="cancelOrder(order.order_no)"  v-if="(order.status.code == 0 || order.status.code == 2)">取消</span>
+        </div>
       </div>
     </div>
   </div>
@@ -41,6 +47,14 @@ export default {
     imgSize: {
       type: String,
       default: 160
+    },
+    buttonSwitchList: {
+      type: Array,
+      default: {'agree': false}
+    },
+    isStore: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -53,12 +67,40 @@ export default {
     },
     size () {
       return this.imgSize
+    },
+    agreeButtonFlag () {
+      console.log('this.buttonSwitchList.agree')
+      console.log(this.buttonSwitchList.agree)
+      return this.buttonSwitchList.agree || false
+    },
+    refuseButtonFlag () {
+      console.log('this.buttonSwitchList.refuse')
+      console.log(this.buttonSwitchList.refuse)
+      return this.buttonSwitchList.refuse || false
+    },
+    cancelButtonFlag () {
+      console.log('this.buttonSwitchList.cancel')
+      console.log(this.buttonSwitchList.cancel)
+      return this.buttonSwitchList.cancel || false
+    },
+    completeButtonFlag () {
+      console.log('this.buttonSwitchList.complete')
+      console.log(this.buttonSwitchList.complete)
+      return this.buttonSwitchList.complete || false
+    },
+    storeFlag () {
+      return this.isStore
     }
   },
   watch: {
     orderList: {
       handler (newVal, oldVal) {
-        console.log(newVal)
+      },
+      deep: true,
+      immediate: true
+    },
+    buttonSwitchList: {
+      handler (newVal, oldVal) {
       },
       deep: true,
       immediate: true
@@ -67,6 +109,12 @@ export default {
   methods: {
     cancelOrder (id) {
       this.$emit('cancelOrder', id)
+    },
+    agreeOrder (id) {
+      this.$emit('agreeOrder', id)
+    },
+    refuseOrder (id) {
+      this.$emit('refuseOrder', id)
     }
   }
 }
@@ -125,4 +173,5 @@ export default {
         border-radius: 50px
         border: 1rpx solid red
         margin-top: 20rpx
+        margin-left: 5%
 </style>

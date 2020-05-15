@@ -16,15 +16,15 @@ const userPageData = {
         {
           'name': '进入交易',
           'src': '/static/images/business.png',
-          'nav': '/pages/collection/main'
+          'nav': '/pages/orderList/main?type=trading'
         },
         {
-          'name': '待确认',
+          'name': '交易成功',
           'src': '/static/images/confirm.png',
           'nav': '/pages/collection/main'
         },
         {
-          'name': '全部订单',
+          'name': '全部购买订单',
           'src': '/static/images/all_orders.png',
           'nav': '/pages/orderList/main?type=all'
         }
@@ -42,28 +42,19 @@ const userPageData = {
         },
         {'name': '待处理订单',
           'src': '/static/images/handle.png',
-          'nav': '/pages/collection/main'
+          'nav': '/pages/orderList/main?type=pending'
         },
         {
           'name': '进入交易',
           'src': '/static/images/business.png',
-          'nav': '/pages/collection/main'
+          'nav': '/pages/orderList/main?type=my_trading'
         },
         {
-          'name': '全部交易',
+          'name': '全部出售订单',
           'src': '/static/images/all_business.png',
           'nav': '/pages/collection/main'
         }
       ]
-    ]
-  },
-  'infoCard': {
-    'title': '个人信息',
-    'urlData': [
-      {'name': '我的发布', 'src': ''},
-      {'name': '待处理订单', 'src': ''},
-      {'name': '进入交易', 'src': ''},
-      {'name': '全部交易', 'src': ''}
     ]
   }
 }
