@@ -67,6 +67,7 @@ export default {
   methods: {
     cancelOrder (id) {
       this.$emit('cancelOrder', id)
+    }
   }
 }
 </script>
