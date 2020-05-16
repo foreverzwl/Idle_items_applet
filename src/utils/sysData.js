@@ -21,10 +21,10 @@ const userPageData = {
         {
           'name': '交易成功',
           'src': '/static/images/confirm.png',
-          'nav': '/pages/collection/main'
+          'nav': '/pages/orderList/main?type=successful_orders'
         },
         {
-          'name': '全部购买订单',
+          'name': '购买记录',
           'src': '/static/images/all_orders.png',
           'nav': '/pages/orderList/main?type=all'
         }
@@ -50,9 +50,9 @@ const userPageData = {
           'nav': '/pages/orderList/main?type=my_trading'
         },
         {
-          'name': '全部出售订单',
+          'name': '出售记录',
           'src': '/static/images/all_business.png',
-          'nav': '/pages/collection/main'
+          'nav': '/pages/orderList/main?type=my_all_sales'
         }
       ]
     ]

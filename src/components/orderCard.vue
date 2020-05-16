@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper" v-if="!storeFlag">
     <div class="order" v-for="(order, index) in dataList" :key="index">
       <div class="order_header">
         <span class="store_name">商家姓名：{{order.store_name}}</span>
@@ -25,13 +25,43 @@
           <span class="order_count">订单商品总数：{{order.total_count}}</span>
           <span>总价：{{order.order_price | toFixed(2)}}</span>
         </p>
-        <div v-if="(storeFlag && order.status.code == 0)">
+        <div>
+          <span class="operate" @click="confirmOrder(order.order_no)"  v-if="(order.status.code == 2)">完成</span>
+          <span class="operate" @click="cancelOrder(order.order_no)"  v-if="(order.status.code == 0)">取消</span>
+          <span class="operate" @click="cancelTrade(order.order_no)"  v-if="(order.status.code == 2)">取消</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrapper" v-else>
+    <div class="order" v-for="(order, index) in dataList" :key="index">
+      <div class="order_header">
+        <span class="store_name">买家姓名：{{order.buyer_name}}</span>
+        <span class="order_status">{{order.status.name}}</span>
+      </div>
+      <div class="order_content" v-for="(item, itemIndex) in order.item" :key="itemIndex" >
+        <div class="left" >
+          <img :src="item.snap_img" :style="{width: size + 'rpx',height: size + 'rpx'}" />
+        </div>
+        <div class="right">
+          <div class="description">
+            {{item.snap_description}}
+          </div>
+          <div class="price">
+            <span>￥{{item.snap_price | toFixed(2)}}</span>
+            <span class="count">x{{item.count}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="order_footer">
+        <p class="order_trade">交易方式：{{order.trade.name}}</p>
+        <p>
+          <span class="order_count">订单商品总数：{{order.total_count}}</span>
+          <span>总价：{{order.order_price | toFixed(2)}}</span>
+        </p>
+        <div v-if="(order.status.code == 0)">
           <span class="operate" @click="agreeOrder(order.order_no)" >同意</span>
           <span class="operate" @click="refuseOrder(order.order_no)" >拒绝</span>
-        </div>
-        <div v-else>
-          <span class="operate" @click="cancelOrder(order.order_no)"  v-if="(order.status.code == 2)">完成</span>
-          <span class="operate" @click="cancelOrder(order.order_no)"  v-if="(order.status.code == 0 || order.status.code == 2)">取消</span>
         </div>
       </div>
     </div>
@@ -68,26 +98,6 @@ export default {
     size () {
       return this.imgSize
     },
-    agreeButtonFlag () {
-      console.log('this.buttonSwitchList.agree')
-      console.log(this.buttonSwitchList.agree)
-      return this.buttonSwitchList.agree || false
-    },
-    refuseButtonFlag () {
-      console.log('this.buttonSwitchList.refuse')
-      console.log(this.buttonSwitchList.refuse)
-      return this.buttonSwitchList.refuse || false
-    },
-    cancelButtonFlag () {
-      console.log('this.buttonSwitchList.cancel')
-      console.log(this.buttonSwitchList.cancel)
-      return this.buttonSwitchList.cancel || false
-    },
-    completeButtonFlag () {
-      console.log('this.buttonSwitchList.complete')
-      console.log(this.buttonSwitchList.complete)
-      return this.buttonSwitchList.complete || false
-    },
     storeFlag () {
       return this.isStore
     }
@@ -115,6 +125,12 @@ export default {
     },
     refuseOrder (id) {
       this.$emit('refuseOrder', id)
+    },
+    confirmOrder (id) {
+      this.$emit('confirmOrder', id)
+    },
+    cancelTrade (id) {
+      this.$emit('cancelTrade', id)
     }
   }
 }
