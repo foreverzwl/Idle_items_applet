@@ -156,6 +156,9 @@ export default {
     //  私聊
     chat () {
       if (this.loginFlag) {
+        wx.navigateTo({
+          url: '/pages/chat/main?id=' + this.goods.goods_id
+        })
       } else {
         //  未登录则弹窗询问是否登录
         this.$login.showLoginModal()
