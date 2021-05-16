@@ -48,6 +48,9 @@ export default {
       })
     },
     getChatList () {
+      if (!this.isLogin) {
+        return false
+      }
       this.$http.get({
         url: '/chatList/' + this.i
       }).then(res => {
